@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="turn.min.js"></script>
+
+<style type="text/css">
+body{
+	background:#ccc;
+	background-image:url(pages/Happy-Birthday.jpg);
+}
+#magazine{
+	margin:10% 10%;
+	text-align: center;
+	width:1000px;
+	height:552px;
+}
+#magazine .turn-page{
+	background-color:black;
+	background-size:60% 60%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+p{
+	color: white;
+	margin: 30%;
+	border: 10px dotted white;
+}
+button{
+	margin: 30%;
+	border: 10px dotted white;
+}
+#floatingBalloons{
+	top: 700px;
+	position: absolute;
+}
+
+</style>
+</head>
+<body>
+
+<div id="magazine" style="position: float">
+		<div style="background-image:url(pages/1.jpg);border: 5px solid white;">
+			<p style="margin: 0% 0%;border:0ch">
+				<u><b>THE TALES OF ABITHA :p</b></u>
+			</p>
+		</div>
+		<div style="border: 5px solid white;">
+			<p>Here's a splendid pic! The boy enjoying his vacation,loving the warmth of the sun rays, making his cheeks flush,
+			eyes eager and happy. However, the mother is squinting in the glare of the sun, trying to hide behind her son's
+			shadow!
+			</p>
+		</div>
+		<div style="background-image:url(pages/2.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				The trip to Echchur...away from the hustle and bustle of the city. It's a great feeling, combined with the 
+				bonus Asirvadam from the Echchur Perumal! Hope the Utsavar stays Happy :)
+				PS: Note that Vedanth is almost as tall as his mom! Is he tall, or is she short? I leave it up to you to deicde ;)
+			</p>
+		</div>
+		<div style="background-image:url(pages/3.jpg);border: 5px solid white;"></div>
+		<div style="background-image:url(pages/5.jpg);border: 5px solid white;"></div>
+		<div style="background-image:url(pages/6.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p style="margin:15%;">
+				Diwali! The festival of lights, colour and joy! It's great to see the whole family together, upholding the Indian
+				Spirit even in the US! We'll join you next time! 
+			</p>
+			<p style="margin:15%;">
+				Abi Chithi!! It's great to see you hanging out with your friends! Hope you enjoyed your dinner! 
+			</p>
+		</div>
+		<div style="background-image:url(pages/7.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				What monstrosity is this! What a crime! How can you do this ! Urging a minor to drink!See the look of pure 
+				ecstasy on his face! You must seriously be careful next time... do not encourage this kind of behaviour, even 
+				if you patake of it!
+			</p>
+		</div>
+		<div style="background-image:url(pages/8.jpg);border: 5px solid white;"></div>
+		<div style="background-image:url(pages/9.jpg);border: 5px solid white;"></div>
+		<div style="background-image:url(pages/10.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				Trips are associated with all kinds of emotions...the anticipation of leaving, the joy of living in the moment, the exhaustion
+				from sheer excitement...
+		</div>
+		<div style="border: 5px solid white;">
+			<p>
+				....and this really was a trip to be remembered! But don't think that the whales came just for
+				you! You just got lucky this time ;)
+			</p>
+		</div>
+		<div style="background-image:url(pages/11.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				This is one cute pic. I don't even remember anyone being this small! Including you! You look just as young 
+				as little Srini in this photo. I don't dish out comments like this....so I mean it -_-.	
+			</p>
+		</div>
+		<div style="background-image:url(pages/12.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				Shreekar's poonal....it's one event I missed, and I deeply regret missing it. I know you do too...I can see the look
+				of immense boredom on your face! It's ok Abitha Chithi...I'll come next time. You didn't have to miss me so much!.
+			</p>
+		</div>
+
+		<div style="background-image:url(pages/13.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;">
+			<p>
+				The good old days! It must have been a lot of fun...I know there are times when we wish everything could go back
+				to how it was then. I wish I could have gotten to know the four of you as kids, fought and played with you. But all
+				the same, there are good memories and stories shared across the genrations :)
+			</p>
+		</div>
+		<div style="background-image:url(pages/14.jpg);border: 5px solid white;"></div>
+		<div style="border: 5px solid white;"><button onclick="moveUp()">Happy Birthday!!</button></div>
+</div>
+	<img id="floatingBalloons" src="pages/balloons.png">
+<script type="text/javascript">
+
+	$(window).ready(function() {
+		$('#magazine').turn({
+							display: 'double',
+							acceleration: true,
+							gradients: !$.isTouch,
+							elevation:50,
+							when: {
+								turned: function(e, page) {
+									/*console.log('Current view: ', $(this).turn('view'));*/
+								}
+							}
+						});
+	});
+	
+	
+	$(window).bind('keydown', function(e){
+		
+		if (e.keyCode==37)
+			$('#magazine').turn('previous');
+		else if (e.keyCode==39)
+			$('#magazine').turn('next');
+			
+	
+	});
+
+	var upperBound = 700;
+	function moveUp()
+	{
+		while(upperBound>=-100)
+		{
+			upperBound -= 50;
+			$("#floatingBalloons").animate({top:upperBound});
+		}
+	}
+</script>
+
+</body>
+</html>
